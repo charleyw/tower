@@ -12,9 +12,8 @@ module Tower
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.generators do |g|
-      g.fixture_replacement :factory_girl
-      g.test_framework :rspec
-    end
+    config.generators.javascript_engine = :js
+    config.generators.test_framework = :rspec
+    config.generators.fixture_replacement = :factory_girl
   end
 end
