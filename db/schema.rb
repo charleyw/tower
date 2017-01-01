@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170101084219) do
+ActiveRecord::Schema.define(version: 20170101091403) do
 
   create_table "project_members", force: :cascade do |t|
     t.integer  "project_id"
@@ -52,8 +52,10 @@ ActiveRecord::Schema.define(version: 20170101084219) do
     t.integer  "rank",        default: 0
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "project_id"
     t.index ["assignee_id"], name: "index_todos_on_assignee_id"
     t.index ["author_id"], name: "index_todos_on_author_id"
+    t.index ["project_id"], name: "index_todos_on_project_id"
   end
 
   create_table "users", force: :cascade do |t|

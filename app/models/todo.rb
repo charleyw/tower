@@ -10,14 +10,17 @@
 #  rank        :integer          default("0")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  project_id  :integer
 #
 # Indexes
 #
 #  index_todos_on_assignee_id  (assignee_id)
 #  index_todos_on_author_id    (author_id)
+#  index_todos_on_project_id   (project_id)
 #
 
 class Todo < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :assignee, class_name: 'User', optional: true
+  belongs_to :project
 end

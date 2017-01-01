@@ -10,11 +10,13 @@
 #  rank        :integer          default("0")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  project_id  :integer
 #
 # Indexes
 #
 #  index_todos_on_assignee_id  (assignee_id)
 #  index_todos_on_author_id    (author_id)
+#  index_todos_on_project_id   (project_id)
 #
 
 FactoryGirl.define do
