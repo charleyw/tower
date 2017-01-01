@@ -10,6 +10,6 @@
 
 FactoryGirl.define do
   factory :team do
-    name "MyString"
+    name { FFaker::Name.name }
   end
 end

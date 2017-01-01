@@ -15,6 +15,6 @@
 
 FactoryGirl.define do
   factory :project do
-    name "MyString"
+    name { FFaker::Name.name }
   end
 end
