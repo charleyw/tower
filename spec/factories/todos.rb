@@ -22,9 +22,10 @@
 FactoryGirl.define do
   factory :todo do
     name "MyString"
-    author_id 1
     assignee_id 1
     finished_at "2017-01-01 15:13:32"
     rank 1
+    author factory: :user
+    project
   end
 end

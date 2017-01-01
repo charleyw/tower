@@ -16,5 +16,6 @@
 FactoryGirl.define do
   factory :project do
     name { FFaker::Name.name }
+    team
   end
 end

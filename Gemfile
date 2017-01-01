@@ -18,6 +18,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'ffaker'
+  gem 'rails-controller-testing'
 end
 
 group :development do

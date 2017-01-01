@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170101091403) do
+ActiveRecord::Schema.define(version: 20170101095248) do
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.integer  "source_id"
+    t.string   "source_type"
+    t.integer  "initiator_id"
+    t.integer  "action"
+    t.text     "data"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["source_id", "source_type"], name: "index_events_on_source_id_and_source_type"
+    t.index ["target_id", "target_type"], name: "index_events_on_target_id_and_target_type"
+  end
 
   create_table "project_members", force: :cascade do |t|
     t.integer  "project_id"

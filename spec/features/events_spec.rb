@@ -3,7 +3,7 @@ require 'rails_helper'
 xdescribe 'Events list page', feature: true do
   let(:user){FactoryGirl.create(:user)}
   let(:team){FactoryGirl.create(:team)}
-  let(:project){FactoryGirl.create(:project, team: team, project_members: [create(:project_member, user: user)])}
+  let(:project){FactoryGirl.create(:project, team: team, users: [user])}
 
   context 'user have an create todo event' do
     before do

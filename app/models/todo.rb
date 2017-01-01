@@ -20,7 +20,13 @@
 #
 
 class Todo < ApplicationRecord
+  after_create :create_event
   belongs_to :author, class_name: 'User'
   belongs_to :assignee, class_name: 'User', optional: true
   belongs_to :project
+
+  private
+  def create_event
+    Event.create(source: project, target: self, initiator: self.author, action: Event::CREATED_TODO)
+  end
 end
