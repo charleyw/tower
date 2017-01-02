@@ -1,24 +1,18 @@
-# README
+# Tower
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby version: 2.3.0
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+```shell
+bundle install
+rake db:setup
+```
 
-* System dependencies
+http://localhost:3000
 
-* Configuration
+帐号：user1@example.com, password: 1234567890
 
-* Database creation
+## Test
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+bundle exec rspec
