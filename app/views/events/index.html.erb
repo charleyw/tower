@@ -25,7 +25,7 @@
           </div>
       <% end %>
       <% if event.action == Event::UPDATED_TODO_ASSIGNEE %>
-          <div class="event event-finished-todo">
+          <div class="event event-updated-todo-assignee">
             <div class="event-created-at"><%= event.created_at.strftime('%H:%M') %></div>
             <div class="event-initiator"><%= event.initiator.name %></div>
             <div class="event-action"><%= update_assignee_action_text event.data %></div>
@@ -33,7 +33,7 @@
           </div>
       <% end %>
       <% if event.action == Event::UPDATED_TODO_DEADLINE %>
-          <div class="event event-finished-todo">
+          <div class="event event-updated-todo-deadline">
             <div class="event-created-at"><%= event.created_at.strftime('%H:%M') %></div>
             <div class="event-initiator"><%= event.initiator.name %></div>
             <div class="event-action"><%= update_deadline_action_text event.data %></div>
