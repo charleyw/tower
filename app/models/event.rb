@@ -25,6 +25,7 @@ class Event < ApplicationRecord
   FINISHED_TODO = 3
   UPDATED_TODO_ASSIGNEE = 4
   UPDATED_TODO_DEADLINE = 5
+  COMMENTED_TODO = 6
 
   serialize :data
   belongs_to :target, polymorphic: true

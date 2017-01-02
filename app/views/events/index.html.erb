@@ -40,5 +40,14 @@
             <div class="event-action-details"><%= event.target.name %></div>
           </div>
       <% end %>
+      <% if event.action == Event::COMMENTED_TODO %>
+          <div class="event event-commented-todo">
+            <div class="event-created-at"><%= event.created_at.strftime('%H:%M') %></div>
+            <div class="event-initiator"><%= event.initiator.name %></div>
+            <div class="event-action">回复了任务：</div>
+            <div class="event-action-details"><%= event.target.name %></div>
+            <div class="event-action-details-extra"><%= event.data[:comment_content] %></div>
+          </div>
+      <% end %>
   <% end %>
 </div>

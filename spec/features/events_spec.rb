@@ -127,4 +127,21 @@ describe 'Events list page', feature: true do
       end
     end
   end
+
+  describe 'user comment on todo' do
+    let!(:todo){create(:todo, author: user, project: project)}
+    let!(:comment){create(:comment, commentable: todo, author: user)}
+
+    before do
+      login_as(user, scope: :user)
+      visit team_events_path(team_id: team.id)
+    end
+
+    it 'should show nil deadline to a specified date' do
+      within first('.event') do
+        expect(page).to have_content("#{user.name} 回复了任务： #{todo.name}")
+        expect(page).to have_content(comment.content)
+      end
+    end
+  end
 end

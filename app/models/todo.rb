@@ -28,6 +28,7 @@ class Todo < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :assignee, class_name: 'User', optional: true
   belongs_to :project
+  has_many :comments, as: :commentable
 
   def soft_destroy
     self.update!(soft_deleted: true, soft_deleted_at: DateTime.now)

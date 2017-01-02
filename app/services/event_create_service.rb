@@ -24,4 +24,9 @@ class EventCreateService
     data.merge!(next_deadline_at: next_deadline) if next_deadline.present?
     Event.create(target: todo, source: todo.project, initiator: initiator, action: Event::UPDATED_TODO_DEADLINE, data: data)
   end
+
+  def comment_todo comment, initiator
+    todo = comment.commentable
+    Event.create(target: todo, source: todo.project, initiator: initiator, action: Event::COMMENTED_TODO, data: {comment_content: comment.content})
+  end
 end
