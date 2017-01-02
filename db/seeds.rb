@@ -33,26 +33,31 @@ Project.find_or_create_by(name: 'Project-1') do |project|
 end
 
 actions = []
-
+# 创建任务
 actions << proc {|n| Todo.create(name: "创建你的第#{n}个项目", project: Project.first, author: user)}
+
+# 删除任务
 actions << proc {
   todo = Todo.not_deleted.sample
   TodoService.new(User.all.sample, todo).delete_todo if todo.present?
 }
 
+# 完成任务
 actions << proc {
   todo = Todo.not_deleted.not_finished.sample
   TodoService.new(User.all.sample, todo).finish_todo if todo.present?
 }
 
+# 修改完成人
 actions << proc {
   todo = Todo.not_deleted.not_finished.sample
   if todo.present?
-    assignees = todo.assignee.present? ? User.all.to_a.push(nil) : User.all
+    assignees = todo.assignee.present? ? User.all.reject{|u| u == todo.assignee }.push(nil) : User.all
     TodoService.new(User.all.sample, todo).assign_todo_to assignees.sample
   end
 }
 
+# 修改完成时间
 actions << proc { |n|
   todo = Todo.not_deleted.not_finished.sample
   if todo.present?
@@ -61,6 +66,7 @@ actions << proc { |n|
   end
 }
 
+# 评论
 actions << proc { |n|
   todo = Todo.not_deleted.sample
   Comment.create(commentable: todo, content: "这是评论#{n}!", author: User.all.sample) if todo.present?
