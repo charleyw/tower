@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe EventCreateService do
+  let(:todo){create(:todo)}
+
   describe '#create_todo' do
-    let(:todo){create(:todo)}
 
     context 'create todo event' do
       subject{EventCreateService.new.create_todo(todo, todo.author)}
@@ -35,6 +36,64 @@ describe EventCreateService do
 
       it 'initiator should be the user' do
         expect(subject.initiator).to eq(user)
+      end
+    end
+  end
+
+  describe '#update_todo_assignee' do
+    context 'add new assignee' do
+      let(:user){create(:user)}
+      let(:assignee){create(:user)}
+      subject{EventCreateService.new.update_todo_assignee(todo, nil, assignee,user)}
+
+      it 'action should be the update todo assignee' do
+        expect(subject.action).to eq(Event::UPDATED_TODO_ASSIGNEE)
+      end
+
+      it 'data show nil for prev assignee' do
+        expect(subject.data[:prev_assignee]).to eq(nil)
+      end
+
+      it 'data show next assignee attrs' do
+        expect(subject.data[:next_assignee]).to include({id: assignee.id, name: assignee.name})
+      end
+    end
+
+    context 'update assignee' do
+      let(:user){create(:user)}
+      let(:assignee){create(:user)}
+      let(:another_assignee){create(:user)}
+      subject{EventCreateService.new.update_todo_assignee(todo, assignee, another_assignee,user)}
+
+      it 'action should be the update todo assignee' do
+        expect(subject.action).to eq(Event::UPDATED_TODO_ASSIGNEE)
+      end
+
+      it 'data show prev assignee attrs' do
+        expect(subject.data[:prev_assignee]).to include(id: assignee.id, name: assignee.name)
+      end
+
+      it 'data show next assignee attrs' do
+        expect(subject.data[:next_assignee]).to include({id: another_assignee.id, name: another_assignee.name})
+      end
+    end
+
+    context 'cancel assignee' do
+      let(:user){create(:user)}
+      let(:assignee){create(:user)}
+      let(:another_assignee){create(:user)}
+      subject{EventCreateService.new.update_todo_assignee(todo, assignee, nil, user)}
+
+      it 'action should be the update todo assignee' do
+        expect(subject.action).to eq(Event::UPDATED_TODO_ASSIGNEE)
+      end
+
+      it 'data show prev assignee attrs' do
+        expect(subject.data[:prev_assignee]).to include(id: assignee.id, name: assignee.name)
+      end
+
+      it 'data show nil for next assignee' do
+        expect(subject.data[:next_assignee]).to eq(nil)
       end
     end
   end

@@ -23,6 +23,7 @@ class Event < ApplicationRecord
   CREATED_TODO = 1
   DELETED_TODO = 2
   FINISHED_TODO = 3
+  UPDATED_TODO_ASSIGNEE = 3
 
   serialize :data
   belongs_to :target, polymorphic: true
