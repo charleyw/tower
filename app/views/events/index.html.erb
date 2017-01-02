@@ -1,54 +1,14 @@
 <h1>动态</h1>
 <div class="events">
   <% @events.each do |event| %>
-      <% if event.action == Event::CREATED_TODO %>
-          <div class="event event-created-todo">
-            <span class="event-created-at"><%= event.created_at.strftime('%H:%M') %></span>
-            <span class="event-initiator"><%= event.initiator.name %></span>
-            <span class="event-action">创建了任务：</span>
-            <span class="event-action-details"><%= event.target.name %></span>
-          </div>
-      <% end %>
-      <% if event.action == Event::DELETED_TODO %>
-          <div class="event event-deleted-todo">
-            <span class="event-created-at"><%= event.created_at.strftime('%H:%M') %></span>
-            <span class="event-initiator"><%= event.initiator.name %></span>
-            <span class="event-action">删除了任务：</span>
-            <span class="event-action-details"><%= event.target.name %></span>
-          </div>
-      <% end %>
-      <% if event.action == Event::FINISHED_TODO %>
-          <div class="event event-finished-todo">
-            <span class="event-created-at"><%= event.created_at.strftime('%H:%M') %></span>
-            <span class="event-initiator"><%= event.initiator.name %></span>
-            <span class="event-action">完成了任务：</span>
-            <span class="event-action-details"><%= event.target.name %></span>
-          </div>
-      <% end %>
-      <% if event.action == Event::UPDATED_TODO_ASSIGNEE %>
-          <div class="event event-updated-todo-assignee">
-            <span class="event-created-at"><%= event.created_at.strftime('%H:%M') %></span>
-            <span class="event-initiator"><%= event.initiator.name %></span>
-            <span class="event-action"><%= update_assignee_action_text event.data %></span>
-            <span class="event-action-details"><%= event.target.name %></span>
-          </div>
-      <% end %>
-      <% if event.action == Event::UPDATED_TODO_DEADLINE %>
-          <div class="event event-updated-todo-deadline">
-            <span class="event-created-at"><%= event.created_at.strftime('%H:%M') %></span>
-            <span class="event-initiator"><%= event.initiator.name %></span>
-            <span class="event-action"><%= update_deadline_action_text event.data %></span>
-            <span class="event-action-details"><%= event.target.name %></span>
-          </div>
-      <% end %>
-      <% if event.action == Event::COMMENTED_TODO %>
-          <div class="event event-commented-todo">
-            <span class="event-created-at"><%= event.created_at.strftime('%H:%M') %></span>
-            <span class="event-initiator"><%= event.initiator.name %></span>
-            <span class="event-action">回复了任务：</span>
-            <span class="event-action-details"><%= event.target.name %></span>
+      <div class="event">
+        <span class="event-created-at"><%= event.created_at.strftime('%H:%M') %></span>
+        <span class="event-initiator"><%= event.initiator.name %></span>
+        <span class="event-action"><%= event.action_name %>：</span>
+        <span class="event-action-details"><%= event.target.name %></span>
+        <% if event.commented_todo? %>
             <span class="event-action-details-extra"><%= event.data[:comment_content] %></span>
-          </div>
-      <% end %>
+        <% end %>
+      </div>
   <% end %>
 </div>

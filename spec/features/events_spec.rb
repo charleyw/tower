@@ -85,7 +85,7 @@ describe 'Events list page', feature: true do
 
     it 'should show "change assignee of todo" when assign to another at second' do
       within '.event:nth-of-type(2)' do
-        expect(page).to have_content("#{user.name} 把 #{assignee.name} 的任务指派给 #{another_assignee.name} ： #{todo.name}")
+        expect(page).to have_content("#{user.name} 把 #{assignee.name} 的任务指派给 #{another_assignee.name}： #{todo.name}")
       end
     end
 
