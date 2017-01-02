@@ -2,15 +2,17 @@
 #
 # Table name: todos
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  author_id   :integer
-#  assignee_id :integer
-#  finished_at :datetime
-#  rank        :integer          default("0")
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  project_id  :integer
+#  id              :integer          not null, primary key
+#  name            :string
+#  author_id       :integer
+#  assignee_id     :integer
+#  finished_at     :datetime
+#  rank            :integer          default("0")
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  project_id      :integer
+#  soft_deleted    :boolean          default("f")
+#  soft_deleted_at :datetime
 #
 # Indexes
 #
