@@ -8,4 +8,13 @@ module EventHelper
       "取消了 #{data[:prev_assignee][:name]} 的任务："
     end
   end
+
+  def update_deadline_action_text data
+    "将任务完成时间从 #{format_deadline data[:prev_deadline_at]} 修改为 #{format_deadline data[:next_deadline_at]}："
+  end
+
+  def format_deadline deadline
+    return '没有截止日期' unless deadline.present?
+    deadline.strftime('%m月%d日')
+  end
 end

@@ -17,4 +17,11 @@ class EventCreateService
     data.merge!(next_assignee: {id: next_assignee.id, name: next_assignee.name}) if next_assignee.present?
     Event.create(target: todo, source: todo.project, initiator: initiator, action: Event::UPDATED_TODO_ASSIGNEE, data: data)
   end
+
+  def update_todo_deadline todo, prev_deadline, next_deadline, initiator
+    data = {}
+    data.merge!(prev_deadline_at: prev_deadline) if prev_deadline.present?
+    data.merge!(next_deadline_at: next_deadline) if next_deadline.present?
+    Event.create(target: todo, source: todo.project, initiator: initiator, action: Event::UPDATED_TODO_DEADLINE, data: data)
+  end
 end

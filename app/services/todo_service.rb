@@ -20,4 +20,10 @@ class TodoService
     @todo.update(assignee: user)
     EventCreateService.new.update_todo_assignee @todo, prev_assignee, user, @current_user
   end
+
+  def update_todo_deadline deadline
+    prev_deadline_at = @todo.deadline_at
+    @todo.update(deadline_at: deadline)
+    EventCreateService.new.update_todo_deadline @todo, prev_deadline_at, deadline, @current_user
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102074104) do
+ActiveRecord::Schema.define(version: 20170102093616) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "target_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170102074104) do
     t.boolean  "soft_deleted",    default: false
     t.datetime "soft_deleted_at"
     t.string   "state",           default: "pending"
+    t.datetime "deadline_at"
     t.index ["assignee_id"], name: "index_todos_on_assignee_id"
     t.index ["author_id"], name: "index_todos_on_author_id"
     t.index ["project_id"], name: "index_todos_on_project_id"

@@ -95,4 +95,36 @@ describe 'Events list page', feature: true do
       end
     end
   end
+
+  describe 'user created todo and update deadline' do
+    let!(:todo){create(:todo, author: user, assignee: nil, project: project)}
+    let!(:deadline_one){DateTime.now - 2.days}
+    let!(:deadline_two){DateTime.now - 1.days}
+
+    before do
+      TodoService.new(user, todo).update_todo_deadline deadline_one
+      TodoService.new(user, todo).update_todo_deadline deadline_two
+      TodoService.new(user, todo).update_todo_deadline nil
+      login_as(user, scope: :user)
+      visit team_events_path(team_id: team.id)
+    end
+
+    it 'should show nil deadline to a specified date' do
+      within '.event:nth-of-type(3)' do
+        expect(page).to have_content("#{user.name} 将任务完成时间从 没有截止日期 修改为 #{deadline_one.strftime('%m月%d日')}： #{todo.name}")
+      end
+    end
+
+    it 'should show update deadline' do
+      within '.event:nth-of-type(2)' do
+        expect(page).to have_content("#{user.name} 将任务完成时间从 #{deadline_one.strftime('%m月%d日')} 修改为 #{deadline_two.strftime('%m月%d日')}： #{todo.name}")
+      end
+    end
+
+    it 'should show update deadline to nil deadline' do
+      within first('.event') do
+        expect(page).to have_content("#{user.name} 将任务完成时间从 #{deadline_two.strftime('%m月%d日')} 修改为 没有截止日期： #{todo.name}")
+      end
+    end
+  end
 end
