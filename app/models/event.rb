@@ -21,6 +21,7 @@
 
 class Event < ApplicationRecord
   CREATED_TODO = 1
+  DELETED_TODO = 2
 
   serialize :data
   belongs_to :target, polymorphic: true
