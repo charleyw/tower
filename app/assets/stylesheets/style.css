@@ -10,3 +10,36 @@ a {
   color: red;
   margin-bottom: 10px;
 }
+
+.event {
+  padding: 10px;
+}
+
+.created-todo .event-action{
+  color: #00b7ff;
+}
+
+.deleted-todo .event-action {
+  color: red
+}
+
+.finished-todo .event-action {
+  color: darkred;
+}
+
+.updated-todo-assignee .event-action {
+  color: green;
+}
+
+.updated-todo-deadline .event-action {
+  color: darkmagenta;
+}
+
+.commented-todo .event-action {
+  color: lightgray;
+}
+
+.event-action-details-extra {
+  margin-top: 10px;
+  padding-left: 6em;
+}

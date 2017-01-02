@@ -7,7 +7,7 @@
         <span class="event-action"><%= event.action_display_name %>：</span>
         <span class="event-action-details"><%= event.target.name %></span>
         <% if event.commented_todo? %>
-            <span class="event-action-details-extra"><%= event.data[:comment_content] %></span>
+            <div class="event-action-details-extra"><%= event.data[:comment_content] %></div>
         <% end %>
       </div>
   <% end %>
