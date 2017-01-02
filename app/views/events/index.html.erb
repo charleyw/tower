@@ -1,10 +1,10 @@
 <h1>动态</h1>
 <div class="events">
   <% @events.each do |event| %>
-      <div class="event">
+      <div class="event <%= event.action_name %>">
         <span class="event-created-at"><%= event.created_at.strftime('%H:%M') %></span>
         <span class="event-initiator"><%= event.initiator.name %></span>
-        <span class="event-action"><%= event.action_name %>：</span>
+        <span class="event-action"><%= event.action_display_name %>：</span>
         <span class="event-action-details"><%= event.target.name %></span>
         <% if event.commented_todo? %>
             <span class="event-action-details-extra"><%= event.data[:comment_content] %></span>

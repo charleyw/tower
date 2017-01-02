@@ -38,6 +38,25 @@ class Event < ApplicationRecord
   def action_name
     case action
       when CREATED_TODO
+        'created-todo'
+      when DELETED_TODO
+        'deleted-todo'
+      when FINISHED_TODO
+        'finished-todo'
+      when UPDATED_TODO_ASSIGNEE
+        'updated-todo-assignee'
+      when UPDATED_TODO_DEADLINE
+        'updated-todo-deadline'
+      when COMMENTED_TODO
+        'commented-todo'
+      else
+        ''
+    end
+  end
+
+  def action_display_name
+    case action
+      when CREATED_TODO
         '创建了任务'
       when DELETED_TODO
         '删除了任务'
