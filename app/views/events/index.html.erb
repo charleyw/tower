@@ -1,5 +1,12 @@
 <div class="events">
-  <%= @events.each do |event|  %>
-
+  <%= @events.each do |event| %>
+      <% if event.action == Event::CREATED_TODO %>
+          <div class="event event-created-todo">
+            <div class="event-created-at"><%= event.created_at.strftime('%H:%M') %></div>
+            <div class="event-initiator"><%= event.initiator.name %></div>
+            <div class="event-action">创建了任务：</div>
+            <div class="event-action-details"><%= event.target.name %></div>
+          </div>
+      <% end %>
   <% end %>
 </div>
