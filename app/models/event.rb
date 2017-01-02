@@ -29,4 +29,5 @@ class Event < ApplicationRecord
   belongs_to :initiator, class_name: 'User'
 
   scope :by_projects, ->(projects) {where(source_type: 'Project', source_id: projects.map(&:id))}
+  scope :recent, ->{order(created_at: :desc)}
 end

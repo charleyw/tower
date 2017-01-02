@@ -19,4 +19,26 @@ describe 'Events list page', feature: true do
       end
     end
   end
+
+  context 'user created a todo then delete' do
+    let!(:todo){create(:todo, author: user, project: project)}
+
+    before do
+      TodoService.new(user, todo).delete_todo
+      login_as(user, scope: :user)
+      visit team_events_path(team_id: team.id)
+    end
+
+    it 'should show "user deleted todo" at first' do
+      within first('.event') do
+        expect(page).to have_content("#{user.name} 删除了任务： #{todo.name}")
+      end
+    end
+
+    it 'should show "user created todo" at second' do
+      within '.event:nth-of-type(2)' do
+        expect(page).to have_content("#{user.name} 创建了任务： #{todo.name}")
+      end
+    end
+  end
 end
