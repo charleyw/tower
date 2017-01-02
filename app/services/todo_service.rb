@@ -14,4 +14,10 @@ class TodoService
     @todo.finish
     EventCreateService.new.finish_todo @todo, @current_user
   end
+
+  def assign_todo_to user
+    prev_assignee = @todo.assignee
+    @todo.update(assignee: user)
+    EventCreateService.new.update_todo_assignee @todo, prev_assignee, user, @current_user
+  end
 end
