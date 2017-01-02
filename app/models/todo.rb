@@ -27,6 +27,6 @@ class Todo < ApplicationRecord
 
   private
   def create_event
-    Event.create(source: project, target: self, initiator: self.author, action: Event::CREATED_TODO)
+    EventCreateService.new.create_todo self, self.author
   end
 end
