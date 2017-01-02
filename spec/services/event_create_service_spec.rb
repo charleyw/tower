@@ -47,7 +47,7 @@ describe EventCreateService do
       end
 
       it 'data show nil for prev assignee' do
-        expect(subject.data[:prev_assignee]).to eq(nil)
+        expect(subject.data).not_to include(:prev_assignee)
       end
 
       it 'data show next assignee attrs' do
@@ -87,7 +87,7 @@ describe EventCreateService do
       end
 
       it 'data show nil for next assignee' do
-        expect(subject.data[:next_assignee]).to eq(nil)
+        expect(subject.data).not_to include(:next_assignee)
       end
     end
   end
