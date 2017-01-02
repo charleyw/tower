@@ -27,8 +27,6 @@ class Todo < ApplicationRecord
   belongs_to :assignee, class_name: 'User', optional: true
   belongs_to :project
 
-  default_scope {where.not(soft_deleted: true)}
-
   def soft_destroy
     self.update!(soft_deleted: true, soft_deleted_at: DateTime.now)
   end

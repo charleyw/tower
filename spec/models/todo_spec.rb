@@ -45,9 +45,5 @@ RSpec.describe Todo, type: :model do
     it 'should mark as soft deleted' do
       expect(todo.soft_deleted).to eq(true)
     end
-
-    it 'should not return in all list' do
-      expect(Todo.all).to eq([])
-    end
   end
 end
