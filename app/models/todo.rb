@@ -30,6 +30,9 @@ class Todo < ApplicationRecord
   belongs_to :project
   has_many :comments, as: :commentable
 
+  scope :not_deleted, -> {where.not(soft_deleted: true)}
+  scope :not_finished, -> {where.not(state: 'done')}
+
   def soft_destroy
     self.update!(soft_deleted: true, soft_deleted_at: DateTime.now)
   end
