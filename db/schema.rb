@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102024724) do
+ActiveRecord::Schema.define(version: 20170102074104) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "target_id"
@@ -64,11 +64,12 @@ ActiveRecord::Schema.define(version: 20170102024724) do
     t.integer  "assignee_id"
     t.datetime "finished_at"
     t.integer  "rank",            default: 0
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "project_id"
     t.boolean  "soft_deleted",    default: false
     t.datetime "soft_deleted_at"
+    t.string   "state",           default: "pending"
     t.index ["assignee_id"], name: "index_todos_on_assignee_id"
     t.index ["author_id"], name: "index_todos_on_author_id"
     t.index ["project_id"], name: "index_todos_on_project_id"

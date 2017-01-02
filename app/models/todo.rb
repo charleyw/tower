@@ -13,6 +13,7 @@
 #  project_id      :integer
 #  soft_deleted    :boolean          default("f")
 #  soft_deleted_at :datetime
+#  state           :string           default("pending")
 #
 # Indexes
 #
@@ -29,6 +30,10 @@ class Todo < ApplicationRecord
 
   def soft_destroy
     self.update!(soft_deleted: true, soft_deleted_at: DateTime.now)
+  end
+
+  def finish
+    self.update(state: 'done')
   end
 
   private

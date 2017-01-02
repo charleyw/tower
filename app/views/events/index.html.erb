@@ -16,5 +16,13 @@
             <div class="event-action-details"><%= event.target.name %></div>
           </div>
       <% end %>
+      <% if event.action == Event::FINISHED_TODO %>
+          <div class="event event-finished-todo">
+            <div class="event-created-at"><%= event.created_at.strftime('%H:%M') %></div>
+            <div class="event-initiator"><%= event.initiator.name %></div>
+            <div class="event-action">完成了任务：</div>
+            <div class="event-action-details"><%= event.target.name %></div>
+          </div>
+      <% end %>
   <% end %>
 </div>

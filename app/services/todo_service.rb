@@ -9,4 +9,9 @@ class TodoService
       EventCreateService.new.delete_todo @todo, @current_user
     end
   end
+
+  def finish_todo
+    @todo.finish
+    EventCreateService.new.finish_todo @todo, @current_user
+  end
 end

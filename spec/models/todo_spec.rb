@@ -13,6 +13,7 @@
 #  project_id      :integer
 #  soft_deleted    :boolean          default("f")
 #  soft_deleted_at :datetime
+#  state           :string           default("pending")
 #
 # Indexes
 #
