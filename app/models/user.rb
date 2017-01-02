@@ -33,4 +33,8 @@ class User < ApplicationRecord
   has_many :team_members
   has_many :projects, through: :project_members
   has_many :teams, through: :team_members
+
+  def projects_by_team_id team_id
+    projects.where(team_id: team_id)
+  end
 end
